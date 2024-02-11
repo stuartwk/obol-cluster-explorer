@@ -4,7 +4,12 @@ import type { LoadEvent } from '@sveltejs/kit';
 export const load = async ({ fetch }: LoadEvent) => {
 	try {
 		console.log('loading distributed-validators');
-		const response = await fetch('https://api.obol.tech/lock/network/mainnet');
+		const response = await fetch('https://api.obol.tech/lock/network/mainnet', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			}
+		});
 
 		const json = (await response.json()) as unknown as DistributedValidatorClusters;
 
