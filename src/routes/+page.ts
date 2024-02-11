@@ -1,6 +1,10 @@
 import type { DistributedValidatorClusters } from '$lib/types';
 import type { LoadEvent } from '@sveltejs/kit';
 
+export const config = {
+	runtime: 'edge'
+};
+
 export const load = async ({ fetch }: LoadEvent) => {
 	try {
 		console.log('loading distributed-validators');
