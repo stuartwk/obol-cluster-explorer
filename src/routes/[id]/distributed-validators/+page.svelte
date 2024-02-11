@@ -2,17 +2,18 @@
 	import ClusterHeader from '$lib/components/ClusterHeader.svelte';
 	import TableData from '$lib/components/TableData.svelte';
 	import TableRow from '$lib/components/TableRow.svelte';
-	import type { ClusterLock } from '$lib/types';
+	import type { ClusterLock, ValidatorStates } from '$lib/types';
 	import { page } from '$app/stores';
 	import NavPill from '$lib/components/NavPill.svelte';
 
 	export let data: {
 		clusterLock: ClusterLock;
+		validatorStates: ValidatorStates;
 	};
 
 	const { id } = $page.params;
 
-	const { clusterLock } = data;
+	const { clusterLock, validatorStates } = data;
 </script>
 
 <main>
@@ -43,6 +44,28 @@
 							<tbody>
 								<TableRow>
 									<TableData classList="break-all">{validator.distributed_public_key}</TableData>
+								</TableRow>
+							</tbody>
+						</table>
+					{/if}
+
+					{#if validatorStates[validator.distributed_public_key]}
+						<h3>Validator State</h3>
+						<table class="mb-8">
+							<tbody>
+								<TableRow>
+									<TableData>Status</TableData>
+									<TableData>{validatorStates[validator.distributed_public_key].status}</TableData>
+								</TableRow>
+
+								<TableRow>
+									<TableData>Balance</TableData>
+									<TableData>{validatorStates[validator.distributed_public_key].balance}</TableData>
+								</TableRow>
+
+								<TableRow>
+									<TableData>Index</TableData>
+									<TableData>{validatorStates[validator.distributed_public_key].index}</TableData>
 								</TableRow>
 							</tbody>
 						</table>

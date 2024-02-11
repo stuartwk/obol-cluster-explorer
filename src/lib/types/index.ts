@@ -59,3 +59,11 @@ export type DistributedValidator = {
 		deposit_data_root: string;
 	};
 };
+
+export type ValidatorStates = {
+	[address: string]: {
+		index: string;
+		status: string; // an enum?
+		balance: string;
+	};
+};

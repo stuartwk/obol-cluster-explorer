@@ -1,4 +1,4 @@
-import type { ClusterLock } from '$lib/types';
+import type { ClusterLock, ValidatorStates } from '$lib/types';
 import type { LoadEvent } from '@sveltejs/kit';
 
 export const load = async ({ fetch, params }: LoadEvent) => {
@@ -8,10 +8,23 @@ export const load = async ({ fetch, params }: LoadEvent) => {
 		throw new Error('No ID found');
 	}
 
-	const response = await fetch(`https://api.obol.tech/lock/${id}`);
-	const json = (await response.json()) as unknown as ClusterLock;
+	const clusterRequest = fetch(`https://api.obol.tech/lock/${id}`);
+	const validatorStatesRequest = fetch(`https://api.obol.tech/state/${id}`);
+
+	const [clusterRes, validatorStatesRes] = await Promise.all([
+		clusterRequest,
+		validatorStatesRequest
+	]);
+
+	const [clusterLock, validatorStates] = await Promise.all([
+		clusterRes.json() as unknown as ClusterLock,
+		validatorStatesRes.json() as unknown as ValidatorStates
+	]);
+
+	// const json = (await clusterRequest.json()) as unknown as ClusterLock;
 
 	return {
-		clusterLock: json
+		clusterLock: clusterLock,
+		validatorStates: validatorStates
 	};
 };
