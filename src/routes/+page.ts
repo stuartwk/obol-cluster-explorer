@@ -11,7 +11,11 @@ export const load = async ({ fetch }: LoadEvent) => {
 			}
 		});
 
+		console.log('response', response);
+
 		const json = (await response.json()) as unknown as DistributedValidatorClusters;
+
+		console.log('json', json);
 
 		// sort by cluster_definition.name
 		json.cluster_locks.sort((a, b) =>
