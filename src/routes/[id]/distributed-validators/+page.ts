@@ -1,7 +1,7 @@
 import type { ClusterLock } from '$lib/types';
 import type { LoadEvent } from '@sveltejs/kit';
 
-export const load = async ({ params }: LoadEvent) => {
+export const load = async ({ fetch, params }: LoadEvent) => {
 	// get id from the URL
 	const { id } = params;
 	if (!id) {

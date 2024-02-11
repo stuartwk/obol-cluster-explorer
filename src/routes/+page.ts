@@ -1,9 +1,11 @@
 import type { DistributedValidatorClusters } from '$lib/types';
+import type { LoadEvent } from '@sveltejs/kit';
 
-export const load = async () => {
+export const load = async ({ fetch }: LoadEvent) => {
 	try {
 		console.log('loading distributed-validators');
 		const response = await fetch('https://api.obol.tech/lock/network/mainnet');
+
 		const json = (await response.json()) as unknown as DistributedValidatorClusters;
 
 		// sort by cluster_definition.name
