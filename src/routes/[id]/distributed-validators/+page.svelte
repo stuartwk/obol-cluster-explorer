@@ -20,7 +20,7 @@
 	<ClusterHeader {clusterLock} />
 
 	<nav class="mb-8">
-		<NavPill url={`/${id}/cluster-definition`} label="Cluster Definition" />
+		<NavPill url={`/${id}/cluster-definition`} label="Cluster" />
 		<NavPill url={`/${id}/distributed-validators`} active={true} label="Validators" />
 		<NavPill url={`/${id}/node-signatures`} label="Node Signatures" />
 	</nav>
