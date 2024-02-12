@@ -28,3 +28,4 @@ You can preview the production build with `npm run preview`.
 - Allow users to query different networks (https://api.obol.tech/docs#/Cluster%20Lock/LockController_getClusterLocksByNetwork)
 - Component testing
 - Validator effectiveness ([/effectiveness/{lockHash}](https://api.obol.tech/docs#/Cluster%20Effectiveness/EffectivenessController_getClusterLock))
+- More mobile friendly
