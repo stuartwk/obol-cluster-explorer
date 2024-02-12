@@ -22,3 +22,9 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Todos
+
+- Allow users to query different networks (https://api.obol.tech/docs#/Cluster%20Lock/LockController_getClusterLocksByNetwork)
+- Component testing
+- Validator effectiveness ([/effectiveness/{lockHash}](https://api.obol.tech/docs#/Cluster%20Effectiveness/EffectivenessController_getClusterLock))
