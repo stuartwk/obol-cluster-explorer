@@ -21,7 +21,7 @@
 
 	<nav class="mb-8">
 		<NavPill url={`/${id}/cluster-definition`} active={true} label="Cluster Definition" />
-		<NavPill url={`/${id}/distributed-validators`} label="Distributed Validators" />
+		<NavPill url={`/${id}/distributed-validators`} label="Validators" />
 		<NavPill url={`/${id}/node-signatures`} label="Node Signatures" />
 	</nav>
 

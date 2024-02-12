@@ -21,7 +21,7 @@
 
 	<nav class="mb-8">
 		<NavPill url={`/${id}/cluster-definition`} label="Cluster Definition" />
-		<NavPill url={`/${id}/distributed-validators`} active={true} label="Distributed Validators" />
+		<NavPill url={`/${id}/distributed-validators`} active={true} label="Validators" />
 		<NavPill url={`/${id}/node-signatures`} label="Node Signatures" />
 	</nav>
 
@@ -49,7 +49,7 @@
 						</table>
 					{/if}
 
-					{#if validatorStates[validator.distributed_public_key]}
+					{#if validatorStates && validatorStates[validator.distributed_public_key]}
 						<h3>Validator State</h3>
 						<table class="mb-8">
 							<tbody>
