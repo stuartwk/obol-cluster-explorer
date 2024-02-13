@@ -1,11 +1,11 @@
 import type { ClusterLock, ValidatorStates } from '$lib/types';
-import type { LoadEvent } from '@sveltejs/kit';
+import { error, type LoadEvent } from '@sveltejs/kit';
 
 export const load = async ({ fetch, params }: LoadEvent) => {
 	// get id from the URL
 	const { id } = params;
 	if (!id) {
-		throw new Error('No ID found');
+		error(404, { message: 'No ID found' });
 	}
 
 	const clusterRequest = fetch(`https://api.obol.tech/lock/${id}`);
@@ -15,6 +15,10 @@ export const load = async ({ fetch, params }: LoadEvent) => {
 		clusterRequest,
 		validatorStatesRequest
 	]);
+
+	if (clusterRes.status !== 200 || validatorStatesRes.status !== 200) {
+		error(404, { message: `Error fetching data for "${id}"` });
+	}
 
 	const [clusterLock, validatorStates] = await Promise.all([
 		clusterRes.json() as unknown as ClusterLock,
